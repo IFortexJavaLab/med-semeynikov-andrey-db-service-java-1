@@ -57,6 +57,22 @@ services:
     volumes:
       - redis_data:/data
 
+  redis-geo:
+    image: redis:latest
+    container_name: redis_geo_db
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis_geo_data:/data
+
+  mongodb:
+    image: mongo:latest
+    container_name: emergency_service_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.5.0
     hostname: zookeeper
@@ -104,4 +120,8 @@ volumes:
   azurite_data:
     driver: local
   redis_data:
+    driver: local
+  redis_geo_data:
+    driver: local
+  mongodb_data:
     driver: local
